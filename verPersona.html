@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Persona</title>
+</head>
+<body>
+    <h1 id="nombres"></h1>
+    <h2 id="apellidos"></h2>
+    <a id="correoLink" href=""></a><br><br>
+    <a id="telefonoLink" href=""></a><br><br>
+    <p id="edad"></p>
+
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var nombres = urlParams.get('nombres');
+        var apellidos = urlParams.get('apellidos');
+        var correo = urlParams.get('correo');
+        var telefono = urlParams.get('telefono');
+        var fechaNacimiento = new Date(urlParams.get('fechaNacimiento'));
+
+        document.getElementById('nombres').innerText = nombres;
+        document.getElementById('apellidos').innerText = apellidos;
+        document.getElementById('correoLink').innerText = correo;
+        document.getElementById('correoLink').href = "mailto:" + correo;
+        document.getElementById('telefonoLink').innerText = telefono;
+        document.getElementById('telefonoLink').href = "tel:" + telefono;
+
+        var today = new Date();
+        var age = today.getFullYear() - fechaNacimiento.getFullYear();
+        var monthDiff = today.getMonth() - fechaNacimiento.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < fechaNacimiento.getDate())) {
+            age--;
+        }
+        document.getElementById('edad').innerText = "Edad: " + age;
+    </script>
+</body>
+</html>
