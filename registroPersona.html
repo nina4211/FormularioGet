@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Persona</title>
+</head>
+<body>
+    <form id="registroForm" method="GET" onsubmit="return validarFormulario()">
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" name="nombres" required><br><br>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required><br><br>
+
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" required><br><br>
+
+        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required><br><br>
+
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required><br><br>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required><br><br>
+
+        <label for="repetirContrasena">Repetir Contraseña:</label>
+        <input type="password" id="repetirContrasena" name="repetirContrasena" required><br><br>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <p id="mensajeError" style="color: red;"></p>
+
+    <script>
+        function validarFormulario() {
+            var contrasena = document.getElementById('contrasena').value;
+            var repetirContrasena = document.getElementById('repetirContrasena').value;
+
+            if (contrasena !== repetirContrasena) {
+                document.getElementById('mensajeError').innerText = "Las contraseñas no coinciden";
+                return false;
+            }
+
+            if (contrasena.length < 5) {
+                document.getElementById('mensajeError').innerText = "La contraseña es insegura";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
